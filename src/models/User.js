@@ -27,6 +27,7 @@ class User {
         }
     }
 
+
     async new(email, password, name){
         try {
             const hash = await bcrypt.hash(password, 10);
