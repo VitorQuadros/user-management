@@ -1,11 +1,11 @@
-var knex = require('knex')({
-    client: 'mysql2',
+var knex = require("knex")({
+    client: "mysql2",
     connection: {
-      host : '127.0.0.1',
-      user : 'root',
-      password : '',
-      database : 'usertest'
+        host : "127.0.0.1",
+        user : "root",
+        password : "8642",
+        database : "apiusers"
     }
-  });
+});
 
-module.exports = knex
+module.exports = knex;
