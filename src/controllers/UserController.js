@@ -2,7 +2,10 @@ const User = require("../models/User");
 
 class UserController {
 
-    async index(req, res) {}
+    async index(req, res) {
+        const users = await User.findAll();
+        res.json(users);
+    }
 
     async create(req, res) {
 
