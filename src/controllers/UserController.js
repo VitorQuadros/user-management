@@ -79,7 +79,7 @@ class UserController {
     }
 
     async recoverPassword(req, res) {
-        const {email} = req.body;
+        const { email } = req.body;
 
         const result = await PasswordToken.create(email);
 

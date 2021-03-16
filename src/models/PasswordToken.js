@@ -5,6 +5,7 @@ class PasswordToken {
 
     async create(email) {
         const user = await User.findByEmail(email);
+
         if(user) {
             try {
                 const token = Date.now();
@@ -19,7 +20,6 @@ class PasswordToken {
             } catch (error) {
                 return {status: false, error: error};
             }
-
         } else {
             return {status: false, error: "User does not exists"};
         }
@@ -40,10 +40,6 @@ class PasswordToken {
             console.log(error);
             return {status: false};
         }
-    }
-
-    async setUsed(token) {
-        await knex.update({used: 1}).where({token}).table("passwordtokens");
     }
 
 }
