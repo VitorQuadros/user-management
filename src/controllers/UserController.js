@@ -51,10 +51,10 @@ class UserController {
             if (result.status) {
                 res.status(200).json({ status: "updated successfully"});
             } else {
-                res.status(406).json({ status: "error", error: "update failed"});
+                res.status(406).json({ status: "error", error: result.error});
             }
         } else {
-            res.status(406).json({ status: "error", error: "update failed"});
+            res.status(406).json({ status: "error", error: result.error});
         }
     }
 }

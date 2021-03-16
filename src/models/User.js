@@ -62,8 +62,10 @@ class User {
                     if (!result) {
                         editUser.email = email;
                     } else {
-                        return {status: false, error: "Email already in system"};
+                        return {status: false, error: "Email already in use"};
                     }
+                } else {
+                    return {status: false, error: "Email already in system"};
                 }
             }
 
