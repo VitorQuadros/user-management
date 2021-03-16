@@ -41,9 +41,21 @@ class UserController {
 
         await User.new(email, password, name);
 
-
-
         res.status(200).send("Ok");
+    }
+
+    async edit(req, res) {
+        const {id, name, email, role} = req.body;
+        const result = await User.update(id, name, email, role);
+        if (result) {
+            if (result.status) {
+                res.status(200).json({ status: "updated successfully"});
+            } else {
+                res.status(406).json({ status: "error", error: "update failed"});
+            }
+        } else {
+            res.status(406).json({ status: "error", error: "update failed"});
+        }
     }
 }
 
