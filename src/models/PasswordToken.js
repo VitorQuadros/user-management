@@ -31,15 +31,19 @@ class PasswordToken {
             if(result.length > 0){
                 const tk = result[0];
                 if (tk.used) {
-                    return false;
-                } else return true;
+                    return {status: false};
+                } else return {status: true, token: tk};
             } else {
-                return false;
+                return {status: false};
             }
         } catch (error) {
             console.log(error);
-            return false;
+            return {status: false};
         }
+    }
+
+    async setUsed(token) {
+        await knex.update({used: 1}).where({token}).table("passwordtokens");
     }
 
 }
