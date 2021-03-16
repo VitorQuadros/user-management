@@ -7,13 +7,15 @@ class PasswordToken {
         const user = await User.findByEmail(email);
         if(user) {
             try {
+                const token = Date.now();
+
                 await knex.insert({
                     user_id: user.id,
                     used: 0,
-                    token: Date.now()
+                    token
                 }).table("passwordtokens");
 
-                return { status: true };
+                return { status: true, token };
             } catch (error) {
                 return {status: false, error: error};
             }
