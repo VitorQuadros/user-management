@@ -25,6 +25,23 @@ class PasswordToken {
         }
     }
 
+    async validate(token) {
+        try {
+            const result = await knex.select().where({token}).table("passwordtokens");
+            if(result.length > 0){
+                const tk = result[0];
+                if (tk.used) {
+                    return false;
+                } else return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
 }
 
 module.exports = new PasswordToken();
